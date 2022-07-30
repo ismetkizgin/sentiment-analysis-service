@@ -1,0 +1,52 @@
+name: deploy to prod
+on:
+  push:
+    tags:
+      - v*
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ismetkizgin/sentiment-analysis-service:${{ env.RELEASE_VERSION }}, ismetkizgin/sentiment-analysis-service:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    steps:
+      - name: Provide doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+
+      - name: Doorkeeper Open
+        run: doctl compute firewall add-rules ${{ secrets.DIGITAL_OCEAN_FIREWALL_ID }} --inbound-rules protocol:tcp,ports:22,address:0.0.0.0/0,address:::/0
+
+      - name: Deploy version
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          user: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          command: cd /etc/hasura && docker-compose pull && docker-compose up --force-recreate --build -d && docker image prune -f
+
+      - name: Doorkeeper Close
+        run: doctl compute firewall remove-rules ${{ secrets.DIGITAL_OCEAN_FIREWALL_ID }} --inbound-rules protocol:tcp,ports:22,address:0.0.0.0/0,address:::/0
