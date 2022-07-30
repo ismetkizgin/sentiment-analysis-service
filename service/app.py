@@ -7,6 +7,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__) 
+app.config['MAX_CONTENT_LENGTH'] = (int(os.environ.get("BODY_SIZE_LIMIT") or '1')) * 1024 * 1024
 CORS(app, resources={r"*": {'origins': os.environ.get('CORS') or '*'}})
 app.wsgi_app=ApiKeyVerify(app.wsgi_app)
 
