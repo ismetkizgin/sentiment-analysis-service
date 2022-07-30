@@ -1,0 +1,15 @@
+version: "3"
+services:
+  serve:
+    container_name: sentiment-analysis-service
+    # image: ismetkizgin/sentiment-analysis-service:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - ${PORT}
+    restart: always
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
