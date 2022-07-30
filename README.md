@@ -52,7 +52,7 @@ $ docker-compose up -d
 | ENVIRONMENT             | Specifies the environment name.                                                                         | NO       | -        |
 | CORS                    | Website endpoints can be defined for Cors safety.                                                       | NO       | *        |
 | PORT                    | It is determined which port will be deploy.                                                             | NO       | 3310     |
-| BODY_SIZE_LIMIT         | Specifies the maximum size of the data that will come from the body during the request.                 | NO       | 1mb      |
+| BODY_SIZE_LIMIT         | Specifies the maximum size of the data that will come from the body during the request.(Type: MB)       | NO       | 1        |
 | API_KEY                 | It allows to add an api key control to the service for security during service use.                     | NO       | -        |
 
 ## Request Examples
