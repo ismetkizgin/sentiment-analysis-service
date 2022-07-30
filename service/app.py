@@ -24,4 +24,7 @@ def predict():
 
 if __name__  == '__main__':
     model = pickle.load(open('../model/model.pkl','rb'))
-    app.run(debug=True)
+    debug = True
+    if os.environ.get('ENVIRONMENT') == 'prod' or os.environ.get('ENVIRONMENT') == 'production':
+        debug = False
+    app.run(debug=debug, host="0.0.0.0", port=int(os.environ.get('PORT') or "3310"))
