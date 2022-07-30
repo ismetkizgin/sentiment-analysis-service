@@ -28,6 +28,7 @@ jobs:
         with:
           push: true
           tags: ismetkizgin/sentiment-analysis-service:${{ env.RELEASE_VERSION }}, ismetkizgin/sentiment-analysis-service:latest
+          platforms: linux/amd64,linux/arm64
 
   deploy:
     runs-on: ubuntu-latest
