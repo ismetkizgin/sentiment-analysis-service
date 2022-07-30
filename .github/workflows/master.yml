@@ -1,11 +1,8 @@
 name: deploy to prod
 on:
   push:
-    branches:
-      - master
     tags:
       - v*
-  workflow_dispatch:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
@@ -24,12 +21,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          platforms: linux/amd64,linux/arm64
 
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ismetkizgin/sentiment-analysis-service:latest
+          tags: ismetkizgin/sentiment-analysis-service:${{ env.RELEASE_VERSION }}, ismetkizgin/sentiment-analysis-service:latest
 
   deploy:
     runs-on: ubuntu-latest
