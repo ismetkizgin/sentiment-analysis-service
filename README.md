@@ -5,7 +5,11 @@
 
 
 ## Description
-It is a service that makes good and bad prediction of messages that come to an application. `Sentiment Analysis` algorithm was used as machine learning algorithm and served with `Python Flask`.
+It is a service that makes good and bad prediction of messages that come to an application. `Sentiment Analysis` algorithm was used as machine learning algorithm and served with `Python Flask`. You can examine the graph of the data in the data set from the visual below. Those with a positivity value of `0 represent a negative message`, and those with a `1 represent a positive message`.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ismetkizgin/sentiment-analysis-service/master/model/graph.png">
+</p>
 
 ## Instructions
 ### Installation
