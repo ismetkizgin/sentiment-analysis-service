@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/ismetkizgin/sentiment-analysis-service/compare/v1.1.0...v1.2.0) (2022-08-01)
+
+
+### Features
+
+* dataset data visualization ([e7d9bee](https://github.com/ismetkizgin/sentiment-analysis-service/commit/e7d9bee92d35322143afbf4fc248e71a58e90855))
+* replaceing Turkish characters ([f52c691](https://github.com/ismetkizgin/sentiment-analysis-service/commit/f52c691f2c33522c72b85f64b31ab3b8a7e7b26e))
+
+
+### Bug Fixes
+
+* fix for dataset ([4a0f25d](https://github.com/ismetkizgin/sentiment-analysis-service/commit/4a0f25d3502b093c3fb49f7c6bc57c687acb9aa6))
+
 ## [1.1.0](https://github.com/ismetkizgin/sentiment-analysis-service/compare/v1.0.1...v1.1.0) (2022-07-30)
 
 
