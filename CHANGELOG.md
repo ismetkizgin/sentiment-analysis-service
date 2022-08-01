@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/ismetkizgin/sentiment-analysis-service/compare/v1.2.0...v1.2.1) (2022-08-01)
+
+
+### Bug Fixes
+
+* fix for package requirements ([8bb35e9](https://github.com/ismetkizgin/sentiment-analysis-service/commit/8bb35e99baa4f508a50e8c990a79b5d5d7d41b27))
+
 ## [1.2.0](https://github.com/ismetkizgin/sentiment-analysis-service/compare/v1.1.0...v1.2.0) (2022-08-01)
 
 
