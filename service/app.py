@@ -17,11 +17,15 @@ def predict():
         return jsonify(message = 'Text content must be sent in body!'), 417 
 
     vect = pickle.load(open('../model/vect.pkl','rb'))
-    prediction = model.predict(vect.transform([request.get_json()['text']]))
+    prediction = model.predict(vect.transform([replaceTurkishCharacters(request.get_json()['text'])]))
     if prediction[0]:
         return jsonify(predictState = True)
     else:
         return jsonify(predictState = False)
+
+def replaceTurkishCharacters(text):
+    translationTable = str.maketrans("ğĞıİöÖüÜşŞçÇ", "gGiIoOuUsScC")
+    return text.translate(translationTable)
 
 if __name__  == '__main__':
     model = pickle.load(open('../model/model.pkl','rb'))
