@@ -63,7 +63,7 @@ $ docker-compose up -d
 
 REQUEST
 ```json
-// POST {{ENDPOINT}}/{{GLOBAL_PREFIX}}/predict
+// POST {{ENDPOINT}}/predict
 {
     "text": "Uygulama kötü bir şekilde tasarlanmış ve gereksiz."
 }
